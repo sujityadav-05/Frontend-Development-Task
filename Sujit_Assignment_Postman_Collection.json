@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "e5d7bb60-e708-44c7-935c-df536a7199ce",
+		"name": "Frontend Development task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42125321",
+		"_collection_link": "https://tester-8927.postman.co/workspace/4dcf257f-8587-453c-9a92-1b4915f41fd9/collection/42125321-e5d7bb60-e708-44c7-935c-df536a7199ce?action=share&source=collection_link&creator=42125321"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Register status is 201 or 409\", function () {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([201, 409]);\r",
+							"});\r",
+							"\r",
+							"const res = pm.response.json();\r",
+							"\r",
+							"if (pm.response.code === 201) {\r",
+							"  pm.environment.set(\"token\", res.token);\r",
+							"  console.log(\"✅ Token saved from register\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"sujit@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Token exists\", function () {\r",
+							"  pm.expect(data.token).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"token\", data.token);\r",
+							"console.log(\"✅ Token saved:\", data.token);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"sujit@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Profile status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const user = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Email exists in profile\", function () {\r",
+							"  pm.expect(user.email).to.exist;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"sujit@gmail.com\",\r\n  \"password\": \"123456\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Profile update status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const res = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Update message exists\", function () {\r",
+							"  pm.expect(res.message).to.include(\"Profile updated\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bio\": \"Frontend Developer Intern Candidate\",\r\n  \"skills\": [\"React\", \"Node.js\", \"MongoDB\", \"JWT\", \"TailwindCSS\"]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Task created status 201\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"const res = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Task ID exists\", function () {\r",
+							"  pm.expect(res.task._id).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"taskId\", res.task._id);\r",
+							"console.log(\"✅ taskId saved:\", res.task._id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Assignment submission\",\r\n  \"description\": \"Postman + GitHub + README\",\r\n  \"status\": \"pending\"\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get tasks status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const tasks = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Tasks is an array\", function () {\r",
+							"  pm.expect(tasks).to.be.an(\"array\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"completed\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update task status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const res = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status changed to completed\", function () {\r",
+							"  pm.expect(res.task.status).to.eql(\"completed\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"completed\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks/6961eb1321be3c18bea0aab7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks",
+						"6961eb1321be3c18bea0aab7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete task status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks/6961ec9c21be3c18bea0aabd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks",
+						"6961ec9c21be3c18bea0aabd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Search tasks status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"completed\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks?search=assignment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "assignment"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Filter tasks status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks?status=pending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "pending"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search+Filter Together",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Search + filter status 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NjFkNjk4MjFiZTNjMThiZWEwYWE4ZiIsImlhdCI6MTc2ODAyMDU4MiwiZXhwIjoxNzY4NjI1MzgyfQ.9ZiZlZkTJcBYu4xgUOHQpIpEkd3pqKzbJX-KNjMaJu8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/tasks?search=assignment&status=pending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "assignment"
+						},
+						{
+							"key": "status",
+							"value": "pending"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

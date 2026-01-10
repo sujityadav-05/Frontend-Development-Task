@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(59, 130, 246, 0.14), transparent 55%),
+    #f8fafc;
+}
+
+/* smoother font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
