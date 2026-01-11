@@ -38,9 +38,7 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Top Heading */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center h-14 w-14 rounded-3xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-black text-xl shadow-lg">
-            A
-          </div>
+          
           <h1 className="text-3xl font-extrabold mt-3">Welcome back</h1>
           <p className="text-slate-500 text-sm mt-1">
             Login to access your dashboard

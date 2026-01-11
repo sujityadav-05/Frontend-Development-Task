@@ -35,9 +35,7 @@ export default function Register() {
       <div className="w-full max-w-md">
         {/* Heading */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center h-14 w-14 rounded-3xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-black text-xl shadow-lg">
-            R
-          </div>
+         
           <h1 className="text-3xl font-extrabold mt-3">Create account</h1>
           <p className="text-slate-500 text-sm mt-1">
             Register to start using the dashboard
@@ -111,9 +109,7 @@ export default function Register() {
           </p>
         </div>
 
-        <p className="text-xs text-center text-slate-500 mt-4">
-          Secure signup • Password hashing • JWT Auth
-        </p>
+        
       </div>
     </div>
   );
